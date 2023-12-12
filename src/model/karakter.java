@@ -55,7 +55,6 @@ public class karakter {
     public void hasznal(String nev, int db) {
 
         if (targyakSzam(nev) < db) {
-
             System.out.println("Nincs elégednő adott tárgyad a használathoz.");
         } else {
             targyakTorlese(nev, db);
@@ -68,7 +67,7 @@ public class karakter {
         if (hasznaljukE) {
             targyakTorlese(nev, db);
         } else {
-            System.out.println("Nem használtá fel egyetlen tárgyat sem");
+            System.out.println("Nem használt fel egyetlen tárgyat sem");
         }
 
     }
@@ -85,27 +84,30 @@ public class karakter {
     }
 
     private void targyakTorlese(String nev) {
-        for (int i = 0; i < felszereles.size(); i++) {
+        int i = 0;
+        boolean megtalalva = false;
+        while ((i < felszereles.size()) && (!megtalalva)) {
             Targy targy = felszereles.get(i);
             if (targy.getNev().equals(nev)) {
+                megtalalva = true;
                 felszereles.remove(i);
-                System.out.println("Tárgy eltávolítva: " + nev);
-                i--;
+                System.out.println("\tTárgy eltávolítva: " + nev);
+            } else {
+                i++;
             }
         }
     }
 
     private void targyakTorlese(String nev, int db) {
+        System.out.println(db+"-ból "+targyakSzam(nev)+" törölve lett.");
         int szamol = 0;
-
         for (int i = 0; i < felszereles.size(); i++) {
             Targy targy = felszereles.get(i);
-
             if (targy.getNev().equals(nev)) {
                 szamol++;
                 if (db >= szamol) {
                     felszereles.remove(i);
-                    System.out.println("Tárgy eltávolítva: " + nev);
+                    System.out.println("\tTárgy eltávolítva: " + nev);
                     i--;
                 }
             }
