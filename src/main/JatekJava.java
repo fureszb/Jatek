@@ -8,6 +8,12 @@ public class JatekJava {
 
     public static void main(String[] args) {
         
+        run();
+        
+        
+   }
+
+    private static void run() {
         jatek jatek = new jatek();
         Targy t1 = new Targy("balta", "acél");
         Targy t2 = new Targy("kard", "fa");
@@ -22,14 +28,13 @@ public class JatekJava {
         
         k1.felvesz(t1, 2);
         k1.hasznal("balta", 1);
-       
+        
         
         jatek.addKarakter(k1);
         jatek.addKarakter(k2);
         jatek.fajlbaMentes("adatok");
         jatek.fajlbolToltes("adatok");
-        
-        
-   }
+    }
+    
     
 }
