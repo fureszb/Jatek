@@ -4,7 +4,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class jatek {
+public class jatek implements Serializable {
+
     private List<karakter> karakterek;
 
     public jatek() {
@@ -15,7 +16,6 @@ public class jatek {
         karakterek.add(karakter);
     }
 
-   
     public void fajlbaMentes(String filename) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
             oos.writeObject(karakterek);
@@ -26,14 +26,18 @@ public class jatek {
         }
     }
 
-   
     public void fajlbolToltes(String filename) {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
             karakterek = (List<karakter>) ois.readObject();
-            System.out.println("jatek betöltve");
+
+            System.out.println("Játék betöltve. Betöltött karakterek:");
+            for (karakter karakter : karakterek) {
+                System.out.println(karakter.toString());
+            }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             System.err.println("Hiba");
         }
     }
+
 }

@@ -1,23 +1,26 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class karakter {
+public class karakter implements Serializable{
 
     private int eletero, ugyesseg, szerencse;
+    private String Knev;
     private ArrayList<Targy> felszereles;
 
     @Override
     public String toString() {
-        return "karakter{" + "eletero=" + eletero + ", ugyesseg=" + ugyesseg + ", szerencse=" + szerencse + ", felszereles=" + felszereles + '}';
+        return "karakter{"+"nev="+Knev+ ", eletero=" + eletero + ", ugyesseg=" + ugyesseg + ", szerencse=" + szerencse + ", felszereles=" + felszereles + '}';
     }
 
-    public karakter() {
+    public karakter(String nev) {
         this.eletero = kocka(2) + 12;
         this.ugyesseg = kocka() + 6;
         this.szerencse = kocka() + 6;
         this.felszereles = new ArrayList<>();
+        this.Knev = nev;
     }
 
     public int kocka() {
@@ -37,27 +40,28 @@ public class karakter {
 
     public void felvesz(Targy targy) {
         felszereles.add(targy);
-        System.out.println("Felvetted a " + targy.getNev() + " tárgyat");
+        System.out.println("Karakter: "+Knev+" Felvetted a " + targy.getNev() + " tárgyat");
     }
 
     public void felvesz(Targy targy, int hanyszor) {
         for (int i = 0; i < hanyszor; i++) {
             felszereles.add(targy);
-            System.out.println("Felvetted a " + targy.getNev() + " tárgyat");
+            System.out.println("Karakter: "+Knev+" Felvetted a " + targy.getNev() + " tárgyat");
         }
     }
 
     public void hasznal(String nev) {
         targyakTorlese(nev);
-        System.out.println("Használt tárgy: " + nev);
+        System.out.println("Karakter: "+Knev+" Használt tárgy: " + nev);
     }
 
     public void hasznal(String nev, int db) {
 
         if (targyakSzam(nev) < db) {
-            System.out.println("Nincs elégednő adott tárgyad a használathoz.");
+            System.out.println("Karakter: "+Knev+" Nincs elégednő adott tárgyad a használathoz.");
         } else {
             targyakTorlese(nev, db);
+            System.out.println("Karakter: "+Knev+", "+targyakSzam(nev)+"-ból "+db+" törölve lett.");
             System.out.println("\tHasznált tárgy: " + nev + "\n\tEnnyiszer: " + db);
         }
 
@@ -66,8 +70,9 @@ public class karakter {
     public void hasznal(String nev, int db, boolean hasznaljukE) {
         if (hasznaljukE) {
             targyakTorlese(nev, db);
+            System.out.println("Karakter: "+Knev+", "+targyakSzam(nev)+"-ból "+targyakSzam(nev)+" törölve lett.");
         } else {
-            System.out.println("Nem használt fel egyetlen tárgyat sem");
+            System.out.println("Karakter: "+Knev+" Nem használt fel egyetlen tárgyat sem");
         }
 
     }
@@ -91,7 +96,7 @@ public class karakter {
             if (targy.getNev().equals(nev)) {
                 megtalalva = true;
                 felszereles.remove(i);
-                System.out.println("\tTárgy eltávolítva: " + nev);
+                System.out.println("Karakter: "+Knev+"\tTárgy eltávolítva: " + nev);
             } else {
                 i++;
             }
@@ -99,7 +104,7 @@ public class karakter {
     }
 
     private void targyakTorlese(String nev, int db) {
-        System.out.println(db+"-ból "+targyakSzam(nev)+" törölve lett.");
+       
         int szamol = 0;
         for (int i = 0; i < felszereles.size(); i++) {
             Targy targy = felszereles.get(i);
@@ -107,7 +112,7 @@ public class karakter {
                 szamol++;
                 if (db >= szamol) {
                     felszereles.remove(i);
-                    System.out.println("\tTárgy eltávolítva: " + nev);
+                    System.out.println("Karakter: "+Knev+"\tTárgy eltávolítva: " + nev);
                     i--;
                 }
             }
