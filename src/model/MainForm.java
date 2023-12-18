@@ -10,18 +10,26 @@ package model;
  */
 
 public class MainForm extends javax.swing.JFrame {
-     Helyszin helyszin = new Start();
+     Helyszin helyszin;
+     MasikIrany mirany;
     /**
      * Creates new form MainForm
      */
     public MainForm() {
         initComponents();
-        
+        mirany = new Kezdes();
+        helyszin = new Start();
          jTextArea1.setText(helyszin.leiras());
+         jButton1.setText(mirany.masikBtnFelirata());
          
-         
-         jButton1.setVisible(false);
-         jButton2.setText("Haladj tovább");
+         if(helyszin instanceof MasikIrany)
+         {
+            jButton1.setVisible(true);
+           
+         }
+         else{   jButton1.setVisible(false);}
+             
+         jButton2.setText(helyszin.egyikBtnFelirata());
     }
 
     /**
@@ -44,8 +52,14 @@ public class MainForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Játék");
         setAlwaysOnTop(true);
+        setResizable(false);
 
         jButton1.setText("Másik irány");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Egyik irány");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +108,28 @@ public class MainForm extends javax.swing.JFrame {
         jTextArea1.insert(helyszin.leiras()+"\n",0);
         jButton2.setText(helyszin.egyikBtnFelirata());
         jTextArea1.setCaretPosition(0);
+         if(helyszin instanceof MasikIrany)
+         {
+            jButton1.setVisible(true);
+         }
+         else{   jButton1.setVisible(false);}
+             
+        
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      
+       jTextArea1.insert(mirany.masikLeiras()+"\n",0);
+       jButton1.setText(mirany.masikBtnFelirata());
+       jButton2.setText(mirany.masikBtnFelirata());
+       jTextArea1.setCaretPosition(0);
+         if(helyszin instanceof MasikIrany)
+         {
+            jButton1.setVisible(true);
+         }
+         else{   jButton1.setVisible(false);}
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

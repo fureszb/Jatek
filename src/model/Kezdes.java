@@ -1,7 +1,7 @@
 
 package model;
 
-public class Kezdes extends Helyszin{
+public class Kezdes extends Helyszin implements MasikIrany{
 
     @Override
     public String leiras() {
@@ -10,15 +10,29 @@ public class Kezdes extends Helyszin{
 
     @Override
     public Helyszin egyikIrany() {
+        return new Jobbra();
+    }
+    
+     @Override
+    public Helyszin masikIrany() {
         return new Balra();
     }
 
     @Override
     public String egyikBtnFelirata() {
-       return "Tovább";
+       return "Jobbra";
     }
-    public void balra(){
-    
+ 
+
+    @Override
+    public String masikBtnFelirata() {
+        return "Balra";
     }
+
+    @Override
+    public String masikLeiras() {
+        return "Balra mentél";
+    }
+
     
 }

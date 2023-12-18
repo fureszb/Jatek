@@ -19,6 +19,6 @@ public class Start extends Helyszin{
 
     @Override
     public String egyikBtnFelirata() {
-       return "Még tovább...";   }
+       return "Tovább...";   }
     
 }
