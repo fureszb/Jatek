@@ -8,15 +8,16 @@ package model;
  *
  * @author furesz.bence
  */
-public class MainForm extends javax.swing.JFrame {
 
+public class MainForm extends javax.swing.JFrame {
+     Helyszin helyszin = new Start();
     /**
      * Creates new form MainForm
      */
     public MainForm() {
         initComponents();
-         Helyszin s1 = new Start();
-         jTextArea1.setText(s1.leiras());
+        
+         jTextArea1.setText(helyszin.leiras());
          
          
          jButton1.setVisible(false);
@@ -89,8 +90,10 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Helyszin h2 = new Kezdes();
-        jTextArea1.setText(h2.leiras());
+        helyszin = helyszin.egyikIrany();
+        jTextArea1.insert(helyszin.leiras()+"\n",0);
+        jButton2.setText(helyszin.egyikBtnFelirata());
+        jTextArea1.setCaretPosition(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
