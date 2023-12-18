@@ -10,3 +10,4 @@ Mozgás:
 Ezáltál nehéz lesz tesztelni, javítani vagy módósítani.
 
 <br><br>Ötletelés:
+-Állapot minta: Az objektum viselkedése megváltoztatható a belső állapottól függően.
