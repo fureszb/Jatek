@@ -10,12 +10,15 @@ public class Kezdes extends Helyszin{
 
     @Override
     public Helyszin egyikIrany() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return new Balra();
     }
 
     @Override
     public String egyikBtnFelirata() {
        return "Tovább";
+    }
+    public void balra(){
+    
     }
     
 }
